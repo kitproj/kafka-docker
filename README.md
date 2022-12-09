@@ -5,7 +5,7 @@ A self-contained Docker image for Kafka. Only one image needed, no Zookeeper (it
 ## Usage
 
 ```bash
-docker run --rm -p 9092:9092 alexcollinsintuit/kafka 
+docker run --rm -p 9092:9092 --name kafka alexcollinsintuit/kafka 
 ```
 
 ## Building
