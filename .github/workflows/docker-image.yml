@@ -23,7 +23,7 @@ jobs:
         run: docker buildx create --use
 
       - name: Build Docker image
-        run: docker buildx build --load --platform linux/amd64,linux/arm64 --tag ghcr.io/kitproj/kafka:latest .
+        run: docker buildx build --push --platform linux/amd64,linux/arm64 --tag ghcr.io/kitproj/kafka:latest .
 
       - name: Tag Docker image
         run: docker tag ghcr.io/kitproj/kafka:latest ghcr.io/kitproj/kafka:${GITHUB_REF#refs/*/}
