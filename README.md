@@ -7,7 +7,7 @@ reduces the complexity by an order of magnitude.
 On Docker:
 
 ```bash
-docker run --rm -p 9092:9092 --name kafka kitproj/kafka 
+docker run --rm -p 9092:9092 --name kafka ghcr.io/kitproj/kafka
 ```
 
 On Kubernetes:
@@ -20,7 +20,7 @@ metadata:
 spec:
   containers:
     - name: main
-      image: kitproj/kafka
+      image: ghcr.io/kitproj/kafka
       ports:
         - containerPort: 9092
 ```
