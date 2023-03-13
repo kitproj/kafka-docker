@@ -1,0 +1,29 @@
+name: Publish Docker image
+
+on:
+  push:
+    tags:
+      - v*
+
+permissions:
+  packages: write
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to GitHub Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u kitproj --password-stdin
+
+      - name: Build Docker image
+        run: docker build . --tag ghcr.io/kitproj/kafka:latest
+
+      - name: Tag Docker image
+        run: docker tag ghcr.io/kitproj/kafka:latest ghcr.io/kitproj/kafka:${GITHUB_REF#refs/*/}
+
+      - name: Push Docker images
+        run: docker push -a ghcr.io/kitproj/kafka

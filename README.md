@@ -1,22 +1,26 @@
-# kafka-kraft
+# Kafka Docker
 
-A self-contained Docker image for Kafka. Only one image needed, no Zookeeper (it uses KRaft). So much much easier for use in automated tests.
+A self-contained Docker image for Kafka. Typically you must run multiple
+images ([example](https://developer.confluent.io/quickstart/kafka-docker/)). This only requires a single image. This
+reduces the complexity by an order of magnitude.
 
-## Usage
+On Docker:
 
 ```bash
-docker run --rm -p 9092:9092 --name kafka alexcollinsintuit/kafka 
+docker run --rm -p 9092:9092 --name kafka kitproj/kafka 
 ```
 
-## Building
+On Kubernetes:
 
-```bash
-# build the image
-docker build --tag kafka .
-```
-
-```bash
-# push to repository
-docker tag kafka alexcollinsintuit/kafka
-docker push alexcollinsintuit/kafka 
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kafka
+spec:
+  containers:
+    - name: main
+      image: kitproj/kafka
+      ports:
+        - containerPort: 9092
 ```
