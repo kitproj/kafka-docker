@@ -1,0 +1,10 @@
+apiVersion: kit/v1
+kind: Tasks
+metadata:
+  name: kafka
+spec:
+  tasks:
+    - name: kafka
+      image: kafka
+      imagePullPolicy: Never
+      ports: 9092
