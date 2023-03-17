@@ -11,5 +11,8 @@ COPY --from=builder /opt/kafka /opt/kafka
 COPY start_kafka.sh /bin/
 EXPOSE 9092
 VOLUME [ "/tmp/kraft-combined-logs" ]
-LABEL description="Kafka ${KAFKA_VERSION} with Kraft"
+LABEL org.opencontainers.image.title="Kafka ${KAFKA_VERSION} with Kraft" \
+      org.opencontainers.image.description="Standalone Kafka image that uses Kraft." \
+      org.opencontainers.image.url="https://github.com/kitproj/kafka-docker" \
+      org.opencontainers.image.licenses="MIT"
 CMD [ "/bin/start_kafka.sh" ]
