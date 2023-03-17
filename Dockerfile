@@ -10,4 +10,6 @@ RUN apk update && apk add --no-install-recommends --no-cache bash openjdk8-jre
 COPY --from=builder /opt/kafka /opt/kafka
 COPY start_kafka.sh /bin/
 EXPOSE 9092
+VOLUME [ "/tmp/kraft-combined-logs" ]
+LABEL description="Kafka ${KAFKA_VERSION} with Kraft"
 CMD [ "/bin/start_kafka.sh" ]
